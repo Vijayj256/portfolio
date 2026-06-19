@@ -71,7 +71,7 @@ export default function Admin() {
           {TABS.find(t => t.id === tab)?.label}
         </h1>
         <p style={{ color: 'var(--text-secondary)', marginBottom: 40 }}>
-          Welcome back, <strong style={{ color: 'var(--accent-primary)' }}>{user?.name}</strong>
+          Welcome back, <strong style={{ color: 'var(--accent-primary)' }}>Vijay</strong>
         </p>
 
         {tab === 'projects'  && <ProjectsPanel />}
