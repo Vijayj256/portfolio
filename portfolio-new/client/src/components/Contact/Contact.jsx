@@ -13,7 +13,7 @@ const CONTACT_INFO = [
 
 const SOCIAL = [
   { icon: FiGithub,   href: 'https://github.com',   label: 'GitHub' },
-  { icon: FiLinkedin, href: 'https://linkedin.com',  label: 'LinkedIn' },
+  // { icon: FiLinkedin, href: 'https://linkedin.com',  label: 'LinkedIn' },
   { icon: FiTwitter,  href: 'https://twitter.com',   label: 'Twitter' },
 ];
 
