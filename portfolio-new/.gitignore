@@ -7,7 +7,7 @@ client/node_modules/
 .env.local
 
 # Build
-client/build/
+client/dist/
 
 # Logs
 *.log
