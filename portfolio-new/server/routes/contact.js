@@ -12,12 +12,15 @@ router.post('/', async (req, res) => {
 
     const contact = await Contact.create({ name, email, subject, message });
 
-    // Send email notification (optional — won't fail if not configured)
-    try {
+    // Send email notification without delaying the response to the visitor.
+    Promise.resolve().then(async () => {
       const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: process.env.EMAIL_PORT,
         auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+        connectionTimeout: 10000,
+        greetingTimeout: 10000,
+        socketTimeout: 10000,
       });
       await transporter.sendMail({
         from: process.env.EMAIL_FROM,
@@ -29,9 +32,9 @@ router.post('/', async (req, res) => {
                <p><strong>Subject:</strong> ${subject}</p>
                <p><strong>Message:</strong></p><p>${message}</p>`,
       });
-    } catch (emailErr) {
+    }).catch((emailErr) => {
       console.log('Email notification failed (not critical):', emailErr.message);
-    }
+    });
 
     res.status(201).json({ success: true, message: 'Message sent successfully!', data: contact });
   } catch (err) { res.status(500).json({ success: false, message: err.message }); }

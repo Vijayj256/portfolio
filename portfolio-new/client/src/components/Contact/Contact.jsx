@@ -36,7 +36,10 @@ export default function Contact({ profile }) {
       toast.success('Message sent! I\'ll get back to you within 24 hours 🚀');
       setForm({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Failed to send. Try again.');
+      const message = err.code === 'ECONNABORTED'
+        ? 'The request took too long. Please try again.'
+        : err.response?.data?.message || 'Unable to send your message right now. Please try again.';
+      toast.error(message);
     } finally {
       setLoading(false);
     }
