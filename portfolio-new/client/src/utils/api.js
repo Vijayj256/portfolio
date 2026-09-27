@@ -19,7 +19,7 @@ export const getProjects     = (params) => API.get('/projects', { params });
 export const getSkills       = ()       => API.get('/skills');
 export const getExperience   = ()       => API.get('/experience');
 export const getTestimonials = ()       => API.get('/testimonials');
-export const sendContact     = (data)   => API.post('/contact', data);
+export const sendContact     = (data)   => API.post('/contact', data, { timeout: 30000 });
 
 // ── Auth Endpoints ──
 export const login = (data) => API.post('/auth/login', data);

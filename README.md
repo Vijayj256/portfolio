@@ -70,6 +70,23 @@ npm run dev
 http://localhost:3000
 ```
 
+## 📧 Contact form email delivery
+
+The contact form stores each message in MongoDB and sends an email notification from the backend. Configure these environment variables on the backend host (never expose the SMTP password in the client):
+
+```env
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_google_app_password
+EMAIL_FROM=your_email@gmail.com
+EMAIL_TO=your_email@gmail.com
+```
+
+For Gmail, enable 2-Step Verification and create an App Password for the account used by `EMAIL_USER`. Use that App Password for `EMAIL_PASS`, not your regular Google account password. `EMAIL_TO` is the inbox that receives contact messages and defaults to `EMAIL_USER`; `EMAIL_FROM` also defaults to `EMAIL_USER`. If using another SMTP provider, set its SMTP host, port, and credentials instead.
+
+Set these variables in the backend's deployment environment as well as locally in `.env`; changing the sample file does not configure an already deployed server. If SMTP delivery fails, the form reports that the message was saved but that the notification could not be delivered. The saved message remains available in the admin dashboard.
+
 ---
 
 ## 📬 Contact Me
